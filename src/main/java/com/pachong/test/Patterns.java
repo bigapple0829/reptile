@@ -13,12 +13,20 @@ import java.util.regex.Pattern;
  * @since v1.0
  */
 public class Patterns {
-    public static void main(String args[]) {
-        String str = "我是一个大苹果";
-        String pattern = "我";
+    public static String getMatcher(String regex, String source) {
+              String result = "";
+         Pattern pattern = Pattern.compile(regex);
+               Matcher matcher = pattern.matcher(source);
+             while (matcher.find()) {
+                     result = matcher.group(1);
+                  }
+               return result;
+            }
 
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(str);
-        System.out.println(m.matches());
-    }
+         public static void main(String[] args) {
+             String url = "http://172.12.1.123/test.txt";
+               String regex = "(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})";
+       //        String regex = "(\\d{1,3}\\.){1,3}(\\d{1,3})";
+                 System.out.println(getMatcher(regex,url));
+             }
 }
