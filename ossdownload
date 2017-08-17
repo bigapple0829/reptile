@@ -1,0 +1,37 @@
+@Override
+    public String recordDownload(String phoneNo ) {
+
+        VoiceInfo voiceInfo = voiceInfoMapper.selectByPram(phoneNo);
+
+        InputStream inputStream = ossUtils.getInputStream(voiceInfo.getPhoneNo());
+
+        try {
+
+//            URL url = new URL(voiceInfo.getUrl());
+//            DataInputStream dataInputStream = new DataInputStream(url.openStream());
+
+            String extensionName = voiceInfo.getUrl().substring(voiceInfo.getUrl().lastIndexOf("."));
+            String imageName ="C:/Users/xiongtao/Desktop/小游戏/"+voiceInfo.getPhoneNo()+extensionName;
+            File f = new File(imageName);
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(imageName));
+
+            byte[] buffer = new byte[1024];
+            int length;
+
+            while ((length = inputStream.read(buffer)) > 0) {
+                fileOutputStream.write(buffer, 0, length);
+            }
+
+            inputStream.close();
+            fileOutputStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
