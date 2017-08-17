@@ -17,13 +17,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * @author xiongtao
- * @version v1.0
- * @classDesc: 功能描述:()
- * @cratedate 2017/8/16 15:35
- * @copyright:善林(上海)金融信息服务有限公司
- */
+
+
 @Service
 @Slf4j
 public class RecordUploadServiceImpl implements RecordUploadService {
